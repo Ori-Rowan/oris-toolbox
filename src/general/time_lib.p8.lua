@@ -1,15 +1,19 @@
 -- priority: -1
 
----Returns number of frames for given seconds assuming 30 FPS.
----@param number seconds
----@param number frames
+--- Time library.
+-- Helper functions for time/frames related things.
+-- @section time_lib
+
+--- Converts seconds to frames assuming 30 FPS.
+-- @tparam number seconds 
+-- @treturn number Seconds
 function seconds_to_frames(seconds)
     return flr(seconds*30)
 end
 
----Returns number of seconds for given frames assuming 30 FPS.
----@param number frames
----@param number seconds
+--- Converts frames to seconds assuming 30 FPS.
+-- @tparam number frames
+-- @treturn number Seconds
 function frame_to_seconds(frames)
     return ceil(frames/30)    
 end

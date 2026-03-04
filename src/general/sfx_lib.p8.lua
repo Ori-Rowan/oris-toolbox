@@ -1,8 +1,12 @@
 -- priority: -1
 
----Changes the volume of a given sfx through direct memmory access.
----@param number sfx
----@param number volume [0,7]
+--- Sfx library.
+-- Helper functions for advanced sfx manipulation. 
+-- @section sfx_lib
+
+--- Changes the volume of a given sfx through direct memmory access.
+-- @tparam number sfx
+-- @tparam number volume Int between [0,7].
 function change_sfx_volume(sfx,volume)
     sfx=flr(sfx)
     local v = flr(mid(0,volume,7))

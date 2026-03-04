@@ -1,8 +1,12 @@
 -- priority: -1
 
----Returns the number of digits infront of decimal point of a given number.
----@param number num
----@return number digits
+--- Math library.
+-- Helper functions for numbers.
+-- @section math_lib
+
+--- Get digits infront of decimal point of a given number.
+-- @tparam number num 
+-- @treturn number
 function get_digits(num)
     num = abs(flr(num))
     if (num < 10) return 1

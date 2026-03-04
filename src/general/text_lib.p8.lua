@@ -1,11 +1,17 @@
 -- priority: -1
 
----Prints text centered inside a given width.
----Automatically wraps words to multiple lines.
----@param msg string Text to print
----@param x number Left position in pixels
----@param y number Top position in pixels
----@param w number Width in pixels
+--- Text library.
+-- Helper functions for strings and custom prints.
+-- @section text_lib
+
+
+--- Prints text centered inside a given width.
+-- Automatically wraps words to multiple lines.
+-- @tparam string msg Text to print.
+-- @tparam number x Left position in pixels.
+-- @tparam number y Top position in pixels.
+-- @tparam number w Width in pixels.
+-- @tparam number col Color of the printed text.
 function print_align_center(msg, x, y, w, col)
     local words = split(msg, " ")
     local rows = {}
@@ -38,6 +44,10 @@ function print_align_center(msg, x, y, w, col)
     end
 end
 
+
+--- Get width of a given string in pixels.
+-- @tparam sring str 
+-- @treturn number
 function str_width(str)
     local len = 0
     foreach(str, function (char)
