@@ -92,6 +92,7 @@ end
 
 -- START OF general\input_lib.p8.lua
 -- priority: -1
+-- tokens: 13
 
 --- Input library.
 -- Helper functions for advanced player input.
@@ -99,17 +100,10 @@ end
 
 
 --- Get direction based on the player input ⬅️⬆️➡️⬇️ for normalized 8d input.
--- @treturn angle Combined input direction.
+-- @treturn angle|empty Combined input direction or empty on no input or colliding input (left+right, up+down).
 function get_8d_input()
-	-- get dir angle from input
-	local dirs,a={0.5,0,nil,0.25,0.375,0.125,0.25,0.75,0.625,0.875,0.75,nil,0.5,0},0
-	for i=0,3 do
-		a+=btn(i) and 2^i or 0
-	end
-	return dirs[a]
+    return tonum(split"0.5,0,,0.25,0.375,0.125,0.25,0.75,0.625,0.875,0.75,,0.5,0"[btn()&0b1111])
 end
-
-
 -- END OF general\input_lib.p8.lua
 
 -- START OF general\math_lib.p8.lua
@@ -396,19 +390,28 @@ end
 -- START OF camera\camera.p8.lua
 -- priority: 1
 
+--- Global camera object to handle camera position.
+-- @type Camera
+
 Camera = {
+    --- (number) Maximum offset for camera shake.
     shake_offset = 2,
+    --- (number) Internal timer for camera shake.
     shake_timer = 0,
 }
 
-function Camera:shake(frames)
-    self.shake_timer=frames
+--- Begin camera shaking for amount of frames.
+-- @tparam number f Amount of frames to shake for.
+function Camera:shake(f)
+    self.shake_timer=f
 end
 
+--- Update step function.
 function Camera:update()
     if (self.shake_timer > 0) self.shake_timer-=1 
 end
 
+--- Draw step function.
 function Camera:draw()
     if self.shake_timer > 0 then
         camera(self:get_offset(), self:get_offset())
@@ -417,6 +420,9 @@ function Camera:draw()
     end
 end
 
+--- Get random camera offset.
+-- offset is calculated based on Camera.shake_offset.
+-- @return number offset
 function Camera:get_offset()
     return rnd(self.shake_offset*2) - self.shake_offset
 end
@@ -431,9 +437,7 @@ end
 -- particular sequence. Event props are shared across listeners, so if a handler mutates 
 -- props, subsequent listeners will see the changes.
 -- @type EventManager
--- @field name
--- @field health
-    
+
 EventManager = {
     --- Internal queue for pending events. Events are tables like this:
     -- @field 1 (string) event
