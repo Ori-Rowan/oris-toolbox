@@ -1,4 +1,5 @@
 -- priority: -1
+-- tokens:24
 
 --- Entity behaviour.
 -- Helper function for entities in a 2D space.
@@ -9,8 +10,7 @@
 -- @tparam number e.spd Number of pixels to move.
 -- @tparam angle e.dir Movement direction.
 function entity_movement(e)
-	local d=get_vector_from_angle(e.dir)
-	e.x+=d.x*e.spd
-	e.y+=d.y*e.spd
+  e.x+=cos(e.dir)*e.spd
+  e.y+=sin(e.dir)*e.spd
 end
 
