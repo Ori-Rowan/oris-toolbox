@@ -6,9 +6,7 @@
 -- particular sequence. Event props are shared across listeners, so if a handler mutates 
 -- props, subsequent listeners will see the changes.
 -- @type EventManager
--- @field name
--- @field health
-    
+
 EventManager = {
     --- Internal queue for pending events. Events are tables like this:
     -- @field 1 (string) event
