@@ -1,4 +1,5 @@
 -- priority: -2
+-- tokens: 38
 
 --- Logging library.
 -- Helper functions for custom file logging. Output file can be modified via 
@@ -10,11 +11,10 @@ printh("["..time().."][INFO]: logging start", _CONFIG.oris_toolbox.log_dir,  _CO
     
 --- Logs entry into the log file.
 -- Entry has the format "[time][level]msg"
--- @tparam string msg 
--- @tparam string level Default "INFO"
-function log(msg, level)
-    level = level or "INFO"
-    log_text= "["..time().."]["..level.."]: "..msg
-    printh(log_text, _CONFIG.oris_toolbox.log_dir)    
+-- @tparam string m the message to log 
+-- @tparam string l level of the log. Default: "INFO"
+function log(m, l)
+    l = l or "INFO"
+    printh("["..time().."]["..l.."]: "..m, _CONFIG.oris_toolbox.log_dir)    
 end
 

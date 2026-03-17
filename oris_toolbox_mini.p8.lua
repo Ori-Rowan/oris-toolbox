@@ -1,12 +1,13 @@
--- START OF config.p8.lua
--- priority: -10
+-- START OF docs.lua
+-- priority: -11
 
 --- Ori's Toolbox is a custom module for PICO-8 development.
 -- @module oris_toolbox
 -- @author Orion
 
 --- Types.
--- Custom type definitions.
+-- Custom type definitions. These only serve as documentation clarity 
+-- and aren't real types from the view of code.
 -- @section types
 
 --- (table) Type for a 2D Vector.
@@ -21,6 +22,11 @@
 
 --- (number) Type for angle. Point on a circle [0,1] where 0 is right.
 -- @table angle
+
+-- END OF docs.lua
+
+-- START OF config.p8.lua
+-- priority: -10
 
 --- Config.
 -- Options for module configuration.
@@ -48,6 +54,7 @@ _CONFIG.oris_toolbox:init()
 
 -- START OF general\logging_lib.p8.lua
 -- priority: -2
+-- tokens: 38
 
 --- Logging library.
 -- Helper functions for custom file logging. Output file can be modified via 
@@ -59,12 +66,11 @@ printh("["..time().."][INFO]: logging start", _CONFIG.oris_toolbox.log_dir,  _CO
     
 --- Logs entry into the log file.
 -- Entry has the format "[time][level]msg"
--- @tparam string msg 
--- @tparam string level Default "INFO"
-function log(msg, level)
-    level = level or "INFO"
-    log_text= "["..time().."]["..level.."]: "..msg
-    printh(log_text, _CONFIG.oris_toolbox.log_dir)    
+-- @tparam string m the message to log 
+-- @tparam string l level of the log. Default: "INFO"
+function log(m, l)
+    l = l or "INFO"
+    printh("["..time().."]["..l.."]: "..m, _CONFIG.oris_toolbox.log_dir)    
 end
 
 
@@ -72,6 +78,7 @@ end
 
 -- START OF general\entity_behaviour.p8.lua
 -- priority: -1
+-- tokens:28
 
 --- Entity behaviour.
 -- Helper function for entities in a 2D space.
@@ -82,10 +89,9 @@ end
 -- @tparam number e.spd Number of pixels to move.
 -- @tparam angle e.dir Movement direction.
 function entity_movement(e)
-	local d=get_vector_from_angle(e.dir)
-	e.x+=d.x*e.spd
-	e.y+=d.y*e.spd
+  if(e.dir) e.x+=cos(e.dir)*e.spd e.y+=sin(e.dir)*e.spd
 end
+
 
 
 -- END OF general\entity_behaviour.p8.lua
@@ -108,6 +114,7 @@ end
 
 -- START OF general\math_lib.p8.lua
 -- priority: -1
+-- tokens: 38
 
 --- Math library.
 -- Helper functions for numbers.
@@ -133,6 +140,7 @@ end
 
 -- START OF general\sfx_lib.p8.lua
 -- priority: -1
+-- tokens: 49
 
 --- Sfx library.
 -- Helper functions for advanced sfx manipulation. 
@@ -155,7 +163,7 @@ end
 
 -- START OF general\table_lib.p8.lua
 -- priority: -1
-
+-- tokens: 44
 
 --- Table library.
 -- Helper functions for tables.
@@ -181,11 +189,8 @@ end
 -- @treturn bool
 function has_value (t, val)
     for i, v in ipairs(t) do
-        if v == val then
-            return true
-        end
+        if (v == val)  return true
     end
-
     return false
 end
 
@@ -194,6 +199,7 @@ end
 
 -- START OF general\text_lib.p8.lua
 -- priority: -1
+-- tokens: 136
 
 --- Text library.
 -- Helper functions for strings and custom prints.

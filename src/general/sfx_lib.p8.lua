@@ -1,4 +1,5 @@
 -- priority: -1
+-- tokens: 49
 
 --- Sfx library.
 -- Helper functions for advanced sfx manipulation. 

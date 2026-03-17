@@ -1,4 +1,5 @@
 -- priority: -1
+-- tokens: 136
 
 --- Text library.
 -- Helper functions for strings and custom prints.

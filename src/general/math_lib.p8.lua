@@ -1,4 +1,5 @@
 -- priority: -1
+-- tokens: 38
 
 --- Math library.
 -- Helper functions for numbers.

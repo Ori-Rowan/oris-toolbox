@@ -1,5 +1,5 @@
 -- priority: -1
-
+-- tokens: 44
 
 --- Table library.
 -- Helper functions for tables.
@@ -25,11 +25,8 @@ end
 -- @treturn bool
 function has_value (t, val)
     for i, v in ipairs(t) do
-        if v == val then
-            return true
-        end
+        if (v == val)  return true
     end
-
     return false
 end
 
